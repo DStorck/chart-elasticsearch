@@ -3,7 +3,7 @@
 # Declare name/value pairs to be passed into your templates.
 # name: value
 
-image: k8s.gcr.io/elasticsearch:v6.2.4
+image: docker.elastic.co/elasticsearch/elasticsearch:6.2.4
 name: elasticsearch
 
 #Testing (just needs curl)
@@ -32,14 +32,14 @@ master_replicas: 3
 master_imagePullPolicy: Always
 master_cpu_limits: 500m
 master_cpu_requests: 500m
-master_memory_limits: 4Gi
-master_memory_requests: 4Gi
+master_memory_limits: 8Gi
+master_memory_requests: 8Gi
 # master_volume_storage: set to small so when exploring with this the
 # user doesn't accidentally create very large disks
 master_volume_storage: 20Gi
 # Xms & Xmx: must be the same
 # should be ~75% of total memory allocation
-master_Xms_Xmx: 3g
+master_Xms_Xmx: 4g
 master_tolerations:
  # - key: taintKey
  #   value: taintValue
@@ -70,13 +70,13 @@ data_replicas: 3
 # These should be modified up for a real production setting
 # recommendation is two cores and 20GB of memory for the containers
 data_cpu_limits: 500m
-data_memory_limits: 4Gi
+data_memory_limits: 8Gi
 data_cpu_requests: 500m
-data_memory_requests: 4Gi
+data_memory_requests: 8Gi
 data_volume_storage: 20Gi
 # Xms & Xmx: must be the same
 # should be ~75% of total memory allocation
-data_Xms_Xmx: 3g
+data_Xms_Xmx: 4g
 data_tolerations:
  # - key: taintKey
  #   value: taintValue

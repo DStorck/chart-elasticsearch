@@ -9,7 +9,7 @@ node:
   ingest: false
 
 path:
-  data: /usr/share/elasticsearch/data
+  data: /es/data
   logs: /usr/share/elasticsearch/logs
 
 bootstrap:
@@ -31,5 +31,10 @@ discovery:
   zen:
     ping.unicast.hosts: ${DISCOVERY_SERVICE}
     minimum_master_nodes: 2
+    
+xpack.license.self_generated.type: trial
+xpack.security.audit.enabled: true 
+
+xpack.security.authc.accept_default_password: true 
 {{ end }}
 

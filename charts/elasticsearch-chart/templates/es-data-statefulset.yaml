@@ -24,6 +24,11 @@ spec:
         imagePullPolicy: IfNotPresent
         command: ["sysctl", "-w", "vm.max_map_count=262144"]
         securityContext: {"privileged": true}
+      - name: chown
+        image: busybox
+        imagePullPolicy: IfNotPresent
+        command: ["sh", "-c", "mkdir -p /es/data && chown -R 1000:1000 /es"]
+        securityContext: {"privileged": true}
       containers:
       - name: {{.Values.name}}
         image: {{.Values.image}}
@@ -40,6 +45,7 @@ spec:
             cpu: {{.Values.data_cpu_requests}}
             memory: {{.Values.data_memory_requests}}
         securityContext:
+          fsGroup: 1000
           privileged: true
           capabilities:
             add:
@@ -108,7 +114,7 @@ spec:
           mountPath: /elasticsearch/config/elasticsearch.yml
           subPath: elasticsearch.yml
         - name: esdata
-          mountPath: /usr/share/elasticsearch/data
+          mountPath: /es
       volumes:
       - name: esconfig
         configMap:

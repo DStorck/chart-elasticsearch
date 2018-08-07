@@ -39,6 +39,7 @@ spec:
             cpu: {{.Values.master_cpu_requests}}
             memory: {{.Values.master_memory_requests}}
         securityContext:
+          fsGroup: 1000
           privileged: true
           capabilities:
             add:
