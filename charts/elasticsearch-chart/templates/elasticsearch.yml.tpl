@@ -10,7 +10,7 @@ node:
 
 path:
   data: /es/data
-  logs: /usr/share/elasticsearch/logs
+  logs: /es/logs
 
 bootstrap:
   memory_lock: ${MEMORY_LOCK}
