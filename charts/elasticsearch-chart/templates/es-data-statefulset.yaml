@@ -24,6 +24,11 @@ spec:
         imagePullPolicy: IfNotPresent
         command: ["sysctl", "-w", "vm.max_map_count=262144"]
         securityContext: {"privileged": true}
+      - name: threads 
+        image: busybox
+        imagePullPolicy: IfNotPresent
+        command: ["sh", "-c", "ulimit -u 4096"]
+        securityContext: {"privileged": true}
       containers:
       - name: {{.Values.name}}
         image: {{.Values.image}}

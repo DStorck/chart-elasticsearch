@@ -33,8 +33,16 @@ discovery:
     minimum_master_nodes: 2
     
 action.auto_create_index: true 
-xpack.security.enabled: true 
-xpack.license.self_generated.type: trial 
+
+xpack: 
+  security:
+    enabled: true 
+  license: 
+    self_generated: 
+      type: trial  
+      
+
+
 
 {{ end }}
 
