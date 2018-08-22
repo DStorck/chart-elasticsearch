@@ -29,6 +29,12 @@ spec:
         imagePullPolicy: IfNotPresent
         command: ["sh", "-c", "ulimit -u 4096"]
         securityContext: {"privileged": true}
+      - name: chown
+        image: {{.Values.image}}
+        command: ["chown", "-v", "elasticsearch:elasticsearch", {{ .Values.data_data_mount | quote }} ]
+        volumeMounts:
+        - name: esdata
+          mountPath: {{ .Values.data_data_mount }}
       containers:
       - name: {{.Values.name}}
         image: {{.Values.image}}
